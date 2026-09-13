@@ -1,4 +1,5 @@
 import GlobeCanvas from "@/components/Globe/GlobeCanvas";
+import SelectScreenSongPlayer  from "@/components/sfx/selectScreen";
 
 export default function Home() {
   return (
@@ -10,7 +11,7 @@ export default function Home() {
         overflow: "hidden",
       }}
     >
-
+      <SelectScreenSongPlayer />
       <GlobeCanvas />
     </main>
   );
