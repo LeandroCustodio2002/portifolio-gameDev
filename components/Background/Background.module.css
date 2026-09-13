@@ -1,0 +1,72 @@
+.background {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+
+  background:
+    radial-gradient(
+      circle at center,
+      #3b0010 0%,
+      #220008 50%,
+      #0a0003 100%
+    );
+}
+
+.blob {
+  position: absolute;
+
+  border-radius:
+    40% 60% 55% 45% /
+    55% 45% 60% 40%;
+
+  background: #000000;
+
+  opacity: 0.5;
+
+  animation:
+    blobFloat linear infinite;
+}
+
+.word {
+  position: absolute;
+
+  color: #2991f9;
+
+  font-weight: 700;
+
+  opacity: 0.15;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+  animation:
+    wordFloat linear infinite;
+}
+
+@keyframes blobFloat {
+  from {
+    transform:
+      translateY(120vh)
+      rotate(0deg);
+  }
+
+  to {
+    transform:
+      translateY(-120vh)
+      rotate(25deg);
+  }
+}
+
+@keyframes wordFloat {
+  from {
+    transform:
+      translateY(110vh);
+  }
+
+  to {
+    transform:
+      translateY(-110vh);
+  }
+}
