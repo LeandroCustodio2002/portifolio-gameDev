@@ -2,22 +2,83 @@
 
 import { useRef } from "react";
 import * as THREE from "three";
+import ProjectSlot from "./ProjectSlot";
 
 export default function Globe() {
   const globeRef = useRef<THREE.Group>(null);
-  
+
+  const rows = [4, 6, 6, 6, 6, 4];
+
+  const sphereRadius = 2.07;
+  const rowSpacing = 0.27;
+  const spacing = 0.29;
+
+  const slots = [];
+
+  for (let rowIndex = 0; rowIndex < rows.length; rowIndex++) {
+    const count = rows[rowIndex];
+
+    const y =
+      ((rows.length - 1) * rowSpacing) / 2 -
+      rowIndex * rowSpacing;
+
+    const totalWidth =
+      (count - 1) * spacing;
+
+    for (let colIndex = 0; colIndex < count; colIndex++) {
+      const x =
+        colIndex * spacing -
+        totalWidth / 2;
+
+      const z = Math.sqrt(
+        Math.max(
+          0,
+          sphereRadius * sphereRadius -
+            x * x -
+            y * y
+        )
+      );
+
+      const normal = new THREE.Vector3(
+        x,
+        y,
+        z
+      ).normalize();
+
+      const quaternion =
+        new THREE.Quaternion();
+
+      quaternion.setFromUnitVectors(
+        new THREE.Vector3(0, 0, 1),
+        normal
+      );
+
+      slots.push({
+        id: `${rowIndex}-${colIndex}`,
+        position: [x, y, z] as [
+          number,
+          number,
+          number
+        ],
+        quaternion,
+      });
+    }
+  }
+
   return (
     <group ref={globeRef} scale={2}>
-      {Array.from({ length: 13 }).map((_, i) => (
+      {/* MERIDIANOS */}
+      {Array.from({ length: 20 }).map((_, i) => (
         <mesh
           key={`vertical-${i}`}
-          rotation={[0, (Math.PI / 13) * i, 0]}
+          rotation={[0, (Math.PI / 20) * i, 0]}
         >
-          <torusGeometry args={[2, 0.015, 8, 128]} />
+          <torusGeometry args={[2, 0.01, 8, 128]} />
           <meshBasicMaterial color="#2991f9" />
         </mesh>
       ))}
 
+      {/* PARALELOS */}
       {Array.from({ length: 13 }).map((_, i) => {
         const t = (i + 1) / 14;
 
@@ -34,12 +95,21 @@ export default function Globe() {
             rotation={[Math.PI / 2, 0, 0]}
           >
             <torusGeometry
-              args={[radius, 0.015, 8, 128]}
+              args={[radius, 0.01, 8, 128]}
             />
             <meshBasicMaterial color="#2991f9" />
           </mesh>
         );
       })}
+
+      {/* PROJECT SLOTS */}
+      {slots.map((slot) => (
+        <ProjectSlot
+          key={slot.id}
+          position={slot.position}
+          quaternion={slot.quaternion}
+        />
+      ))}
     </group>
   );
 }
