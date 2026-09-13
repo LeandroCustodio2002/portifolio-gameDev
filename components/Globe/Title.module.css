@@ -1,0 +1,19 @@
+/*
+IMPORTANTE:
+
+A propriedade className funciona apenas para
+alguns elementos HTML.
+
+O componente <Text /> do drei é renderizado
+como um objeto Three.js, então a maioria
+das propriedades CSS daqui NÃO terá efeito.
+
+Deixe este arquivo preparado para quando
+misturarmos HTML + Three.js.
+*/
+
+.title {
+  text-transform: uppercase;
+  letter-spacing: 8px;
+  font-weight: bold;
+}
