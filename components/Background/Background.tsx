@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, type CSSProperties } from "react";
 import styles from "./Background.module.css";
 
 const words = [
@@ -12,7 +12,7 @@ const words = [
   "Godot",
   "Unity",
   "Unreal",
-  "Maya"
+  "Maya",
 ];
 
 const quotes = [
@@ -43,6 +43,15 @@ function sr(seed: number) {
   return x - Math.floor(x);
 }
 
+function roomStyle(seed: number, extra: CSSProperties = {}): CSSProperties {
+  return {
+    "--lane": `${(sr(seed) - 0.5) * 80}vw`,
+    animationDuration: `${22 + sr(seed + 2) * 32}s`,
+    animationDelay: `-${sr(seed + 3) * 40}s`,
+    ...extra,
+  } as CSSProperties;
+}
+
 export default function Background() {
   const [mounted, setMounted] = useState(false);
 
@@ -54,7 +63,6 @@ export default function Background() {
 
   return (
     <div className={styles.background}>
-      {/* Blobs */}
       {Array.from({ length: 100 }).map((_, i) => (
         <div
           key={`blob-${i}`}
@@ -69,39 +77,33 @@ export default function Background() {
         />
       ))}
 
-      {/* Palavras */}
-      {Array.from({ length: 20 }).map((_, i) => (
-        <div
-          key={`word-${i}`}
-          className={styles.word}
-          style={{
-            left: `${sr(i * 5 + 1000) * 100}%`,
-            fontSize: `${18 + sr(i * 5 + 1001) * 50}px`,
-            animationDuration: `${20 + sr(i * 5 + 1002) * 30}s`,
-            animationDelay: `-${sr(i * 5 + 1003) * 30}s`,
-          }}
-        >
-          {words[i % words.length]}
-        </div>
-      ))}
+      <div className={styles.scene}>
+        {Array.from({ length: 20 }).map((_, i) => (
+          <div
+            key={`word-${i}`}
+            className={styles.word}
+            style={roomStyle(i * 5 + 1000, {
+              fontSize: `${18 + sr(i * 5 + 1001) * 50}px`,
+            })}
+          >
+            {words[i % words.length]}
+          </div>
+        ))}
 
-      {/* Frases */}
-      {Array.from({ length: 12 }).map((_, i) => (
-        <div
-          key={`quote-${i}`}
-          className={styles.word}
-          style={{
-            left: `${sr(i * 5 + 2000) * 100}%`,
-            fontSize: `${8 + sr(i * 5 + 2001) * 6}px`,
-            fontWeight: 400,
-            opacity: 0.08,
-            animationDuration: `${35 + sr(i * 5 + 2002) * 40}s`,
-            animationDelay: `-${sr(i * 5 + 2003) * 40}s`,
-          }}
-        >
-          {quotes[i % quotes.length]}
-        </div>
-      ))}
+        {Array.from({ length: 12 }).map((_, i) => (
+          <div
+            key={`quote-${i}`}
+            className={styles.word}
+            style={roomStyle(i * 5 + 2000, {
+              fontSize: `${8 + sr(i * 5 + 2001) * 6}px`,
+              fontWeight: 400,
+              "--word-opacity": 0.08,
+            } as CSSProperties)}
+          >
+            {quotes[i % quotes.length]}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
