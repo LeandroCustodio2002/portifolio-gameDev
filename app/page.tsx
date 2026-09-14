@@ -2,6 +2,7 @@ import GlobeCanvas from "@/components/Globe/GlobeCanvas";
 import SelectScreenSongPlayer  from "@/components/Sfx/selectScreen";
 import Background from "@/components/Background/Background";
 import ProjectBanner from "@/components/ProjectBanner/ProjectBanner";
+import ProjectPortrait from "@/components/ProjectPortrait/ProjectPortrait"; 
 
 export default function Home() {
   return (
@@ -16,6 +17,8 @@ export default function Home() {
         }}
       >
         <SelectScreenSongPlayer />
+        <ProjectPortrait
+  image="/projects/trail-to-elenki.png" />
         <GlobeCanvas />
         <ProjectBanner title="Trail To Elenki" />
       </main>

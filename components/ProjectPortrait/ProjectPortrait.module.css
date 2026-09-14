@@ -1,0 +1,39 @@
+.portrait {
+  position: fixed;
+
+  left: 24px;
+  bottom: 140px;
+
+  width: 180px;
+  height: 340px;
+
+  overflow: hidden;
+
+  background: #180000;
+
+  border-left: 8px solid #5f0000;
+  border-right: 8px solid #5f0000;
+  border-top: 8px solid #8a0000;
+  border-bottom: 8px solid #8a0000;
+
+  box-shadow:
+    0 0 20px rgba(255, 0, 0, 0.3);
+
+  z-index: 90;
+}
+
+.portrait {
+  position: fixed;
+
+  left: 15vh;
+  bottom: 120px;
+
+  width: 70vh;
+  height: 80vh;
+
+  transform:
+    perspective(1000px)
+    rotateY(35deg);
+
+  transform-origin: left center;
+}
