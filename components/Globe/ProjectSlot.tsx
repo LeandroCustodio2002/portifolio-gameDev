@@ -1,7 +1,8 @@
 "use client";
 
-import { Component, type ReactNode } from "react";
+import { Component, useMemo, useRef, type ReactNode } from "react";
 import * as THREE from "three";
+import { useFrame } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
 import type { Project } from "@/lib/projects";
 
@@ -28,6 +29,56 @@ class TextureErrorBoundary extends Component<
     if (this.state.failed) return null;
     return this.props.children;
   }
+}
+
+const goldVertexShader = /* glsl */ `
+  varying vec2 vUv;
+  void main() {
+    vUv = uv;
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+  }
+`;
+
+const goldFragmentShader = /* glsl */ `
+  uniform float uTime;
+  varying vec2 vUv;
+
+  void main() {
+    vec3 deep = vec3(0.90, 0.62, 0.10);
+    vec3 gold = vec3(1.0, 0.84, 0.05);
+    vec3 hot = vec3(1.0, 0.97, 0.55);
+
+    float sweep = fract(uTime * 0.45);
+    float y = 1.0 - vUv.y;
+    float dist = abs(y - sweep);
+    float band = exp(-dist * dist * 48.0);
+
+    vec3 color = mix(deep, gold, vUv.y);
+    color = mix(color, hot, band);
+
+    gl_FragColor = vec4(color, 1.0);
+  }
+`;
+
+function GoldFrameMaterial() {
+  const materialRef = useRef<THREE.ShaderMaterial>(null);
+  const uniforms = useMemo(() => ({ uTime: { value: 0 } }), []);
+
+  useFrame(({ clock }) => {
+    if (materialRef.current) {
+      materialRef.current.uniforms.uTime.value = clock.elapsedTime;
+    }
+  });
+
+  return (
+    <shaderMaterial
+      ref={materialRef}
+      uniforms={uniforms}
+      vertexShader={goldVertexShader}
+      fragmentShader={goldFragmentShader}
+      toneMapped={false}
+    />
+  );
 }
 
 function ProjectSlotIcon({
@@ -76,7 +127,7 @@ export default function ProjectSlot({
     <group position={position} quaternion={quaternion} {...handlers}>
       <mesh position={[0, 0, -0.002]}>
         <planeGeometry args={[0.28 * widthScale, 0.28]} />
-        <meshBasicMaterial color="#FFD700" />
+        <GoldFrameMaterial />
       </mesh>
 
       <mesh>

@@ -56,11 +56,23 @@ export default function Globe({ projects, onHover, onLeave }: Props) {
 
   return (
     <group ref={globeRef} scale={2.2}>
+      <mesh>
+        <sphereGeometry args={[1.98, 64, 64]} />
+        <meshStandardMaterial
+          color="#4338ca"
+          transparent
+          opacity={0.35}
+          roughness={0.25}
+          metalness={0.15}
+          depthWrite={false}
+        />
+      </mesh>
+
       {/* MERIDIANOS */}
       {Array.from({ length: 20 }).map((_, i) => (
         <mesh key={`vertical-${i}`} rotation={[0, (Math.PI / 20) * i, 0]}>
           <torusGeometry args={[2, 0.01, 8, 128]} />
-          <meshBasicMaterial color="#2991f9" />
+          <meshBasicMaterial color="#c084fc" />
         </mesh>
       ))}
 
@@ -76,7 +88,7 @@ export default function Globe({ projects, onHover, onLeave }: Props) {
             rotation={[Math.PI / 2, 0, 0]}
           >
             <torusGeometry args={[radius, 0.01, 8, 128]} />
-            <meshBasicMaterial color="#2991f9" />
+            <meshBasicMaterial color="#c084fc" />
           </mesh>
         );
       })}
