@@ -1,5 +1,5 @@
 import GlobeCanvas from "@/components/Globe/GlobeCanvas";
-import SelectScreenSongPlayer  from "@/components/Sfxa/selectScreen";
+import SelectScreenSongPlayer  from "@/components/Sfx/selectScreen";
 import Background from "@/components/Background/Background";
 import ProjectBanner from "@/components/ProjectBanner/ProjectBanner";
 import ProjectPortrait from "@/components/ProjectPortrait/ProjectPortrait"; 
