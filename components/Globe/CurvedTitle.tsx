@@ -17,7 +17,7 @@ export default function CurvedTitle() {
     groupRef.current.rotation.y -= delta * 1;
   });
 
-  const sphereRadius = 3.5;
+  const sphereRadius = 3.9;
   const titleHeight = 2.5;
 
   return (
@@ -37,7 +37,7 @@ export default function CurvedTitle() {
           >
             <Text
               position={[0, 0, 0]}
-              rotation={[0, 0, 0]}
+              rotation={[-.5, 0, 0]}
               fontSize={0.5}
               color="white"
               outlineWidth={0.02}

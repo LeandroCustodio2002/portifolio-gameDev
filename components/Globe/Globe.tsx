@@ -66,7 +66,7 @@ export default function Globe() {
   }
 
   return (
-    <group ref={globeRef} scale={2}>
+    <group ref={globeRef} scale={2.2}>
       {/* MERIDIANOS */}
       {Array.from({ length: 20 }).map((_, i) => (
         <mesh

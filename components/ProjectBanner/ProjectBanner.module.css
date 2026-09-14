@@ -1,0 +1,33 @@
+.banner {
+    position: fixed;
+
+    left: -140px;
+    bottom: 80px;
+
+    width: 700px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform: rotate(28deg);
+
+    background: linear-gradient(
+        28deg,
+        #6d28d9,
+        #2563eb,
+        #6d28d9
+    );
+
+    box-shadow:
+        0 0 15px rgba(56, 189, 248, 0.6),
+        0 0 30px rgba(37, 99, 235, 0.5);
+
+    z-index: 100;
+
+    font-size: 60px;
+    letter-spacing: 0.0005em;
+    font-weight: bold;
+    font-style: italic;
+}
