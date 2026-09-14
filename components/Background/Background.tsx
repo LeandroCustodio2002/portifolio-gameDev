@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import styles from "./Background.module.css";
 
 const words = [
@@ -37,26 +38,33 @@ const quotes = [
   "...then I took an arrow in the knee.",
 ];
 
-
+function sr(seed: number) {
+  const x = Math.sin(seed + 1) * 10000;
+  return x - Math.floor(x);
+}
 
 export default function Background() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return <div className={styles.background} />;
+
   return (
     <div className={styles.background}>
-      {/* Pedras */}
+      {/* Blobs */}
       {Array.from({ length: 100 }).map((_, i) => (
         <div
           key={`blob-${i}`}
           className={styles.blob}
           style={{
-            left: `${Math.random() * 100}%`,
-            width: `${100 + Math.random() * 250}px`,
-            height: `${60 + Math.random() * 140}px`,
-            animationDuration: `${
-              30 + Math.random() * 40
-            }s`,
-            animationDelay: `-${
-              Math.random() * 40
-            }s`,
+            left: `${sr(i * 7) * 100}%`,
+            width: `${100 + sr(i * 7 + 1) * 250}px`,
+            height: `${60 + sr(i * 7 + 2) * 140}px`,
+            animationDuration: `${30 + sr(i * 7 + 3) * 40}s`,
+            animationDelay: `-${sr(i * 7 + 4) * 40}s`,
           }}
         />
       ))}
@@ -67,40 +75,28 @@ export default function Background() {
           key={`word-${i}`}
           className={styles.word}
           style={{
-            left: `${Math.random() * 100}%`,
-            fontSize: `${
-              18 + Math.random() * 50
-            }px`,
-            animationDuration: `${
-              20 + Math.random() * 30
-            }s`,
-            animationDelay: `-${
-              Math.random() * 30
-            }s`,
+            left: `${sr(i * 5 + 1000) * 100}%`,
+            fontSize: `${18 + sr(i * 5 + 1001) * 50}px`,
+            animationDuration: `${20 + sr(i * 5 + 1002) * 30}s`,
+            animationDelay: `-${sr(i * 5 + 1003) * 30}s`,
           }}
         >
           {words[i % words.length]}
         </div>
       ))}
 
-      {/* Frases famosas */}
+      {/* Frases */}
       {Array.from({ length: 12 }).map((_, i) => (
         <div
           key={`quote-${i}`}
           className={styles.word}
           style={{
-            left: `${Math.random() * 100}%`,
-            fontSize: `${
-              8 + Math.random() * 6
-            }px`,
+            left: `${sr(i * 5 + 2000) * 100}%`,
+            fontSize: `${8 + sr(i * 5 + 2001) * 6}px`,
             fontWeight: 400,
             opacity: 0.08,
-            animationDuration: `${
-              35 + Math.random() * 40
-            }s`,
-            animationDelay: `-${
-              Math.random() * 40
-            }s`,
+            animationDuration: `${35 + sr(i * 5 + 2002) * 40}s`,
+            animationDelay: `-${sr(i * 5 + 2003) * 40}s`,
           }}
         >
           {quotes[i % quotes.length]}
