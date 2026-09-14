@@ -13,7 +13,7 @@ const projects = projectsData as Project[];
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export default function Home() {
-  const [activeProject, setActiveProject] = useState<Project>(projects[0]);
+  const [activeProject, setActiveProject] = useState<Project | null>(null);
   const leaveTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const handleHover = (project: Project) => {
@@ -23,7 +23,7 @@ export default function Home() {
 
   const handleLeave = () => {
     leaveTimer.current = setTimeout(() => {
-      setActiveProject(projects[0]);
+      setActiveProject(null);
     }, 80);
   };
 
@@ -39,13 +39,13 @@ export default function Home() {
         }}
       >
         <SelectScreenSongPlayer />
-        <ProjectPortrait image={BASE_PATH + activeProject.portrait} />
+        <ProjectPortrait image={activeProject ? BASE_PATH + activeProject.portrait : undefined} />
         <GlobeCanvas
           projects={projects}
           onHover={handleHover}
           onLeave={handleLeave}
         />
-        <ProjectBanner title={activeProject.name} />
+        {activeProject && <ProjectBanner title={activeProject.name} />}
       </main>
     </>
   );
