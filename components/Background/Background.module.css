@@ -28,21 +28,34 @@
     blobFloat linear infinite;
 }
 
-.word {
+.scene {
   position: absolute;
+  inset: 0;
+  perspective: 720px;
+  perspective-origin: 50% 22%;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
 
-  color: #2991f9;
+.word {
+  --word-opacity: 0.15;
+  --lane: 0vw;
 
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  color: #1d4ed8;
   font-weight: 700;
-
-  opacity: 0.15;
-
   text-transform: uppercase;
-
   white-space: nowrap;
 
-  animation:
-    wordFloat linear infinite;
+  transform-origin: center bottom;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+
+  animation: wordRoom linear infinite;
 }
 
 @keyframes blobFloat {
@@ -59,14 +72,49 @@
   }
 }
 
-@keyframes wordFloat {
-  from {
+@keyframes wordRoom {
+  /* chão: deita e avança para o fundo */
+  0% {
     transform:
-      translateY(110vh);
+      translate3d(var(--lane), 30vh, 260px)
+      rotateX(90deg);
+    opacity: var(--word-opacity);
   }
 
-  to {
+  40% {
     transform:
-      translateY(-110vh);
+      translate3d(var(--lane), 30vh, -140px)
+      rotateX(90deg);
+    opacity: calc(var(--word-opacity) * 0.9);
+  }
+
+  /* rampa: sobe em 60°, como a face do hexágono */
+  46% {
+    transform:
+      translate3d(var(--lane), 30vh, -140px)
+      rotateX(30deg);
+    opacity: calc(var(--word-opacity) * 0.88);
+  }
+
+  68% {
+    transform:
+      translate3d(var(--lane), 4vh, -400px)
+      rotateX(30deg);
+    opacity: calc(var(--word-opacity) * 0.75);
+  }
+
+  /* parede do fundo: em pé, sobe */
+  74% {
+    transform:
+      translate3d(var(--lane), 4vh, -430px)
+      rotateX(0deg);
+    opacity: calc(var(--word-opacity) * 0.7);
+  }
+
+  100% {
+    transform:
+      translate3d(var(--lane), -48vh, -430px)
+      rotateX(0deg);
+    opacity: calc(var(--word-opacity) * 0.16);
   }
 }

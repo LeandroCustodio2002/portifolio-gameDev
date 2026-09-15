@@ -1,0 +1,23 @@
+[
+  {
+    "id": "trail-to-elenki",
+    "name": "Trail To Elenki",
+    "icon": "/projects/icons/trail-to-elenki.png",
+    "portrait": "/projects/trail-to-elenki.png",
+    "url": "https://store.steampowered.com"
+  },
+  {
+    "id": "eu-presidente",
+    "name": "Eu Presidente",
+    "icon": "/projects/icons/eu-presidente.png",
+    "portrait": "/projects/eu-presidente.png",
+    "url": "https://store.steampowered.com"
+  },
+  {
+    "id": "drowned-soul",
+    "name": "Drowned Soul",
+    "icon": "/projects/icons/drowned-soul.png",
+    "portrait": "/projects/drowned-soul.png",
+    "url": "https://store.steampowered.com"
+  }
+]
