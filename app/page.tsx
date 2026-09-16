@@ -38,7 +38,6 @@ export default function Home() {
           overflow: "hidden",
         }}
       >
-        <SelectScreenSongPlayer />
         <ProjectPortrait image={activeProject ? BASE_PATH + activeProject.portrait : undefined} />
         <GlobeCanvas
           projects={projects}
