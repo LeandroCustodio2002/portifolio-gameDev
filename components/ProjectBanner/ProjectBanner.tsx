@@ -6,9 +6,7 @@ type Props = {
   title: string;
 };
 
-export default function ProjectBanner({
-  title,
-}: Props) {
+export default function ProjectBanner({ title }: Props) {
   return (
     <div className={styles.banner}>
       <span>{title}</span>

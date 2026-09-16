@@ -3,21 +3,49 @@
     "id": "trail-to-elenki",
     "name": "Trail To Elenki",
     "icon": "/projects/icons/trail-to-elenki.png",
-    "portrait": "/projects/trail-to-elenki.png",
-    "url": "https://store.steampowered.com"
+    "portrait": "/projects/trailToElenkiBanner.png",
+    "url": "https://lph-backspace.itch.io/trail-to-elenki-demo"
   },
   {
     "id": "eu-presidente",
     "name": "Eu Presidente",
     "icon": "/projects/icons/eu-presidente.png",
-    "portrait": "/projects/eu-presidente.png",
-    "url": "https://store.steampowered.com"
+    "portrait": "/projects/euPresidenteBanner.png",
+    "url": "https://lph-backspace.itch.io/eupresidente2"
   },
   {
-    "id": "drowned-soul",
-    "name": "Drowned Soul",
-    "icon": "/projects/icons/drowned-soul.png",
-    "portrait": "/projects/drowned-soul.png",
-    "url": "https://store.steampowered.com"
+    "id": "Until It Blooms",
+    "name": "Until It Blooms",
+    "icon": "/projects/icons/until-it-blooms.png",
+    "portrait": "/projects/untilItBloomsBanner.png",
+    "url": "https://mihaellk.itch.io/until-it-blooms"
+  },
+  {
+    "id": "flabby bird",
+    "name": "Flappy Bird",
+    "icon": "/projects/icons/flappy-bird.png",
+    "portrait": "/projects/flappyBirdBanner.png",
+    "url": "https://github.com/LeandroCustodio2002/flappyBird"
+  },
+  {
+    "id": "bad apple",
+    "name": "Bad Apple ASCII",
+    "icon": "/projects/icons/bad-apple.png",
+    "portrait": "/projects/badAppleBanner.png",
+    "url": "https://leandrocustodio2002.github.io/Bad-Apple-ASCII/"
+  },
+  {
+    "id": "github",
+    "name": "My Github",
+    "icon": "/projects/icons/github.jpg",
+    "portrait": "/projects/githubBanner.png",
+    "url": "https://github.com/LeandroCustodio2002"
+  },
+  {
+    "id": "linkedin",
+    "name": "My Linkedin",
+    "icon": "/projects/icons/linkedin.avif",
+    "portrait": "/projects/linkedinBanner.png",
+    "url": "https://www.linkedin.com/in/leandro-custodio/"
   }
 ]

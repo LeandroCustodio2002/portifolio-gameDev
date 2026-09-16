@@ -13,12 +13,10 @@
 
     transform: rotate(28deg);
 
-    background: linear-gradient(
-        28deg,
-        #6d28d9,
-        #2563eb,
-        #6d28d9
-    );
+    background-image: url("/linkedin.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
 
     box-shadow:
         0 0 15px rgba(56, 189, 248, 0.6),
@@ -26,6 +24,7 @@
 
     z-index: 100;
 
+    color: white;
     font-size: 60px;
     letter-spacing: 0.0005em;
     font-weight: bold;
