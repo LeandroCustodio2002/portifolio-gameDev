@@ -5,6 +5,7 @@ import * as THREE from "three";
 import { useFrame } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
 import type { Project } from "@/lib/projects";
+import { playHoverSfx } from "@/components/Sfx/hoverSfx";
 
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
@@ -110,6 +111,7 @@ export default function ProjectSlot({
         onPointerOver: (e: THREE.Event) => {
           (e as unknown as PointerEvent).stopPropagation?.();
           document.body.style.cursor = "pointer";
+          playHoverSfx();
           onHover?.(project);
         },
         onPointerOut: () => {
