@@ -10,6 +10,16 @@ export default function SelectScreenSongPlayer({ autoPlay = false }: { autoPlay?
     audio.loop = true;
     audio.volume = 0.5;
 
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        audio.pause();
+      } else {
+        audio.play().catch(() => {});
+      }
+    };
+
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
     if (autoPlay) {
       audio.play().catch(() => {});
     } else {
@@ -21,11 +31,13 @@ export default function SelectScreenSongPlayer({ autoPlay = false }: { autoPlay?
       return () => {
         window.removeEventListener("click", startMusic);
         audio.pause();
+        document.removeEventListener("visibilitychange", onVisibilityChange);
       };
     }
 
     return () => {
       audio.pause();
+      document.removeEventListener("visibilitychange", onVisibilityChange);
     };
   }, [autoPlay]);
 
