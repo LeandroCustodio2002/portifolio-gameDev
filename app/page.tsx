@@ -50,6 +50,7 @@ export default function Home() {
           projects={projects}
           onHover={handleHover}
           onLeave={handleLeave}
+          hasActiveProject={!!activeProject}
         />
         {activeProject && <ProjectBanner title={activeProject.name} />}
       </main>
