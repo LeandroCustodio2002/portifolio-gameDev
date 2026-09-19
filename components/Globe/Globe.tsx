@@ -7,7 +7,7 @@ import type { Project } from "@/lib/projects";
 
 type Props = {
   projects: Project[];
-  onHover: (project: Project) => void;
+  onHover: (project: Project, localPos: [number, number, number]) => void;
   onLeave: () => void;
 };
 

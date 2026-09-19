@@ -16,16 +16,19 @@ const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 export default function Home() {
   const [inserted, setInserted] = useState(false);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
+  const [activeSlotPos, setActiveSlotPos] = useState<[number, number, number] | null>(null);
   const leaveTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
-  const handleHover = (project: Project) => {
+  const handleHover = (project: Project, localPos: [number, number, number]) => {
     clearTimeout(leaveTimer.current);
     setActiveProject(project);
+    setActiveSlotPos(localPos);
   };
 
   const handleLeave = () => {
     leaveTimer.current = setTimeout(() => {
       setActiveProject(null);
+      setActiveSlotPos(null);
     }, 80);
   };
 
@@ -50,7 +53,7 @@ export default function Home() {
           projects={projects}
           onHover={handleHover}
           onLeave={handleLeave}
-          hasActiveProject={!!activeProject}
+          activeSlotPos={activeSlotPos}
         />
         {activeProject && <ProjectBanner title={activeProject.name} />}
       </main>

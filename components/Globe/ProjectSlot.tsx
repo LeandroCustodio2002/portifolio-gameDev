@@ -14,7 +14,7 @@ type ProjectSlotProps = {
   quaternion: THREE.Quaternion;
   widthScale?: number;
   project?: Project;
-  onHover?: (project: Project) => void;
+  onHover?: (project: Project, localPos: [number, number, number]) => void;
   onLeave?: () => void;
 };
 
@@ -179,7 +179,7 @@ export default function ProjectSlot({
           document.body.style.cursor = "pointer";
           setHovered(true);
           playHoverSfx();
-          onHover?.(project);
+          onHover?.(project, position);
         },
         onPointerOut: () => {
           document.body.style.cursor = "default";
