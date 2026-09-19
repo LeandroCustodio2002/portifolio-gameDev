@@ -6,6 +6,7 @@ import SelectScreenSongPlayer from "@/components/Sfx/selectScreen";
 import Background from "@/components/Background/Background";
 import ProjectBanner from "@/components/ProjectBanner/ProjectBanner";
 import ProjectPortrait from "@/components/ProjectPortrait/ProjectPortrait";
+import InsertCoin from "@/components/InsertCoin/InsertCoin";
 import projectsData from "@/public/data/projects.json";
 import type { Project } from "@/lib/projects";
 
@@ -13,6 +14,7 @@ const projects = projectsData as Project[];
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export default function Home() {
+  const [inserted, setInserted] = useState(false);
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const leaveTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
@@ -27,8 +29,13 @@ export default function Home() {
     }, 80);
   };
 
+  if (!inserted) {
+    return <InsertCoin onStart={() => setInserted(true)} />;
+  }
+
   return (
     <>
+      <SelectScreenSongPlayer autoPlay />
       <Background />
       <main
         style={{

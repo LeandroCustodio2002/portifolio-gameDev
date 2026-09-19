@@ -2,38 +2,44 @@
 
 import { useEffect } from "react";
 
-export default function SelectScreenSongPlayer() {
-  useEffect(() => {
-const audio = new Audio(
-  "/music/selectScreen.mp3"
-);
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
+export default function SelectScreenSongPlayer({ autoPlay = false }: { autoPlay?: boolean }) {
+  useEffect(() => {
+    const audio = new Audio(`${BASE_PATH}/music/selectScreen.mp3`);
     audio.loop = true;
     audio.volume = 0.5;
 
-    const startMusic = () => {
-      audio.play();
-
-      window.removeEventListener(
-        "click",
-        startMusic
-      );
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        audio.pause();
+      } else {
+        audio.play().catch(() => {});
+      }
     };
 
-    window.addEventListener(
-      "click",
-      startMusic
-    );
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
+    if (autoPlay) {
+      audio.play().catch(() => {});
+    } else {
+      const startMusic = () => {
+        audio.play();
+        window.removeEventListener("click", startMusic);
+      };
+      window.addEventListener("click", startMusic);
+      return () => {
+        window.removeEventListener("click", startMusic);
+        audio.pause();
+        document.removeEventListener("visibilitychange", onVisibilityChange);
+      };
+    }
 
     return () => {
-      window.removeEventListener(
-        "click",
-        startMusic
-      );
-
       audio.pause();
+      document.removeEventListener("visibilitychange", onVisibilityChange);
     };
-  }, []);
+  }, [autoPlay]);
 
   return null;
 }

@@ -3,6 +3,7 @@ import {
   Geist,
   Geist_Mono,
   Orbitron,
+  Press_Start_2P,
 } from "next/font/google";
 
 import "./globals.css";
@@ -23,6 +24,12 @@ const orbitron = Orbitron({
   weight: ["400", "500", "700", "900"],
 });
 
+const pressStart2P = Press_Start_2P({
+  variable: "--font-press-start-2p",
+  subsets: ["latin"],
+  weight: "400",
+});
+
 export const metadata: Metadata = {
   title: "Leandro Custódio",
   description: "Game Developer Portfolio",
@@ -38,6 +45,7 @@ export default function RootLayout({
         ${geistSans.variable}
         ${geistMono.variable}
         ${orbitron.variable}
+        ${pressStart2P.variable}
         h-full
         antialiased
       `}
