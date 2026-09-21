@@ -174,14 +174,14 @@ export default function ProjectSlot({
 
   const handlers = project
     ? {
-        onPointerOver: (e: THREE.Event) => {
+        onPointerEnter: (e: THREE.Event) => {
           (e as unknown as PointerEvent).stopPropagation?.();
           document.body.style.cursor = "pointer";
           setHovered(true);
           playHoverSfx();
           onHover?.(project, position);
         },
-        onPointerOut: () => {
+        onPointerLeave: () => {
           document.body.style.cursor = "default";
           setHovered(false);
           onLeave?.();
