@@ -1,29 +1,53 @@
+@font-face {
+  font-family: "ITC Korinna";
+  src: url("/fonts/itc-korinna-std/ITC-Korinna-Bold.ttf")
+    format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+
 .intro {
   position: fixed;
   inset: 0;
-  background: black;
-  overflow: hidden;
+
+  background: #000;
 
   display: flex;
   justify-content: center;
   align-items: center;
+
+  overflow: hidden;
 }
 
 .logo {
-  font-family: Impact, sans-serif;
+  font-family: "ITC Korinna", serif;
+  font-weight: 700;
 
-  font-size: clamp(3rem, 12vw, 10rem);
+  font-size: clamp(6rem, 15vw, 14rem);
+  line-height: 1;
 
-  color: white;
+  color: #ffd400;
+  -webkit-text-stroke: 10px #003cff;
 
-  transform: scale(0.1);
+  letter-spacing: -0.10em;
 
-  animation: mvc2Zoom 4s ease-out forwards;
+  user-select: none;
 
   text-shadow:
-    0 0 20px #00bfff,
-    0 0 40px #00bfff,
-    0 0 80px #00bfff;
+    1px 1px 0 #0028b8,
+    2px 2px 0 #0028b8,
+    3px 3px 0 #0028b8,
+    4px 4px 0 #0028b8,
+    5px 5px 0 #0028b8,
+    6px 6px 0 #0028b8,
+    7px 7px 0 #0028b8,
+    8px 8px 0 #0028b8,
+    9px 9px 0 #0028b8,
+    10px 10px 0 #0028b8,
+    12px 12px 20px rgba(0, 0, 0, 0.6);
+
+  animation: capcomIntro 4.5s ease-out forwards;
 }
 
 .flash {
@@ -34,39 +58,41 @@
 
   opacity: 0;
 
-  animation: flash 4s forwards;
+  pointer-events: none;
+
+  animation: flashEffect 4.5s forwards;
 }
 
-@keyframes mvc2Zoom {
+@keyframes capcomIntro {
   0% {
-    transform: scale(0.1);
+    transform: scale(0.05);
     opacity: 0;
   }
 
-  20% {
+  10% {
     opacity: 1;
   }
 
   70% {
-    transform: scale(1.5);
+    transform: scale(1);
   }
 
   100% {
-    transform: scale(2.2);
-    opacity: 0;
+    transform: scale(1.05);
   }
 }
 
-@keyframes flash {
-  65% {
+@keyframes flashEffect {
+  0%,
+  75% {
     opacity: 0;
   }
 
-  75% {
+  85% {
     opacity: 1;
   }
 
-  85% {
+  100% {
     opacity: 0;
   }
 }
