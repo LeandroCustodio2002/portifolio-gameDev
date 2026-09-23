@@ -91,8 +91,11 @@
   animation: flashEffect 4.5s forwards;
 }
 
+/* some no começo e volta 100% branco no pico da piscada do logo (85% de 4.5s) */
 .playing .intro-whiteout {
-  animation: whiteoutFade 1.4s ease-out forwards;
+  animation:
+    whiteoutFade 1.4s ease-out forwards,
+    whiteoutReturn 0.01s 3.8s forwards;
 }
 
 .playing .intro-iris {
@@ -107,6 +110,12 @@
 
   100% {
     opacity: 0;
+  }
+}
+
+@keyframes whiteoutReturn {
+  to {
+    opacity: 1;
   }
 }
 
