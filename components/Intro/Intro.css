@@ -1,12 +1,3 @@
-@font-face {
-  font-family: "ITC Korinna";
-  src: url("/fonts/itc-korinna-std/ITC-Korinna-Bold.ttf")
-    format("truetype");
-  font-weight: 700;
-  font-style: normal;
-}
-
-
 .intro {
   position: fixed;
   inset: 0;
@@ -16,34 +7,6 @@
   align-items: center;
 
   overflow: hidden;
-}
-
-.logo {
-  font-family: "ITC Korinna", serif;
-  font-weight: 700;
-
-  font-size: clamp(6rem, 15vw, 14rem);
-  line-height: 1;
-
-  color: #ffd400;
-  -webkit-text-stroke: 10px #003cff;
-
-  letter-spacing: -0.10em;
-
-  user-select: none;
-
-  text-shadow:
-    1px 1px 0 #0028b8,
-    2px 2px 0 #0028b8,
-    3px 3px 0 #0028b8,
-    4px 4px 0 #0028b8,
-    5px 5px 0 #0028b8,
-    6px 6px 0 #0028b8,
-    7px 7px 0 #0028b8,
-    8px 8px 0 #0028b8,
-    9px 9px 0 #0028b8,
-    10px 10px 0 #0028b8,
-    12px 12px 20px rgba(0, 0, 0, 0.6);
 }
 
 .flash {
@@ -83,19 +46,12 @@
   pointer-events: none;
 }
 
-.playing .logo {
-  animation: capcomIntro 4.5s ease-out forwards;
-}
-
 .playing .flash {
   animation: flashEffect 4.5s forwards;
 }
 
-/* some no começo e volta 100% branco no pico da piscada do logo (85% de 4.5s) */
 .playing .intro-whiteout {
-  animation:
-    whiteoutFade 1.4s ease-out forwards,
-    whiteoutReturn 0.01s 3.8s forwards;
+  animation: whiteoutFade 1.4s ease-out forwards;
 }
 
 .playing .intro-iris {
@@ -110,12 +66,6 @@
 
   100% {
     opacity: 0;
-  }
-}
-
-@keyframes whiteoutReturn {
-  to {
-    opacity: 1;
   }
 }
 
@@ -135,25 +85,6 @@
     height: 300vmax;
     opacity: 0;
     visibility: hidden;
-  }
-}
-
-@keyframes capcomIntro {
-  0% {
-    transform: scale(0.05);
-    opacity: 0;
-  }
-
-  10% {
-    opacity: 1;
-  }
-
-  70% {
-    transform: scale(1);
-  }
-
-  100% {
-    transform: scale(1.05);
   }
 }
 
