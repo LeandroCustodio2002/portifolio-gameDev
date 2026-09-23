@@ -1,0 +1,104 @@
+.intro {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+.flash {
+  position: absolute;
+  inset: 0;
+
+  background: white;
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+/* fundo começa branco e revela a cor real do céu */
+.intro-whiteout {
+  position: fixed;
+  inset: 0;
+
+  background: white;
+
+  pointer-events: none;
+}
+
+/* círculo amarelo: buraco no canto superior direito que abre até cobrir a tela */
+.intro-iris {
+  position: fixed;
+  top: 30%;
+  left: 80%;
+
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+
+  box-shadow: 0 0 0 300vmax #f1d235;
+  transform: translate(-50%, -50%);
+
+  pointer-events: none;
+}
+
+.playing .flash {
+  animation: flashEffect 4.5s forwards;
+}
+
+.playing .intro-whiteout {
+  animation: whiteoutFade 1.4s ease-out forwards;
+}
+
+.playing .intro-iris {
+  animation: irisOpen 1s ease-in forwards;
+}
+
+@keyframes whiteoutFade {
+  0%,
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes irisOpen {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    width: 300vmax;
+    height: 300vmax;
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes flashEffect {
+  0%,
+  75% {
+    opacity: 0;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
