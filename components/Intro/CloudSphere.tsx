@@ -4,6 +4,9 @@ import * as THREE from "three";
 import { useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 
+// baixa a textura antes da intro começar (ainda na tela de insert coin)
+useTexture.preload("/cloud.jpg");
+
 export default function CloudSphere() {
   const clouds = useTexture("/cloud.jpg");
 
