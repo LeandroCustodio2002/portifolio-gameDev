@@ -11,8 +11,6 @@
   position: fixed;
   inset: 0;
 
-  background: #000;
-
   display: flex;
   justify-content: center;
   align-items: center;

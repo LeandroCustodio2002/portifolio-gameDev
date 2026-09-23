@@ -1,7 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
+import { Canvas } from "@react-three/fiber";
+
 import "./Intro.css";
+import CloudSphere from "./CloudSphere";
 
 interface Props {
   onFinish: () => void;
@@ -31,9 +34,23 @@ export default function CustodioIntro({ onFinish }: Props) {
   }, [onFinish]);
 
   return (
-    <div className="intro">
-      <div className="logo">CUSTODIO</div>
-      <div className="flash" />
-    </div>
+    <>
+      <Canvas
+        style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: 0,
+        }}
+        camera={{ position: [0, 0, 0.1] }}
+      >
+        <color attach="background" args={["#6cb8ff"]} />
+        <CloudSphere />
+      </Canvas>
+
+      <div className="intro">
+        <div className="logo">CUSTODIO</div>
+        <div className="flash" />
+      </div>
+    </>
   );
 }
