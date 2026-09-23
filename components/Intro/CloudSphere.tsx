@@ -4,11 +4,14 @@ import * as THREE from "three";
 import { useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const CLOUD_URL = `${BASE_PATH}/cloud.jpg`;
+
 // baixa a textura antes da intro começar (ainda na tela de insert coin)
-useTexture.preload("/cloud.jpg");
+useTexture.preload(CLOUD_URL);
 
 export default function CloudSphere() {
-  const clouds = useTexture("/cloud.jpg");
+  const clouds = useTexture(CLOUD_URL);
 
   clouds.wrapS = THREE.RepeatWrapping;
   clouds.wrapT = THREE.RepeatWrapping;
